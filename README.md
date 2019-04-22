@@ -1,3 +1,3 @@
 # InsureIT
-##Trial InsureIT
+Trial InsureIT
 
