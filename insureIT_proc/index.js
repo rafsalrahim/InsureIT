@@ -24,6 +24,7 @@ const { TransactionProcessor } = require('sawtooth-sdk/processor')
 //requires the module specified in ().
 
 const InsureITHandler= require('./InsureIT_proc')
+const InsureITData=require('./insureIT_dataHandler')
 
 
 if (process.argv.length < 3) {
@@ -36,6 +37,7 @@ const address = process.argv[2]
 const transactionProcessor = new TransactionProcessor(address)
 
 transactionProcessor.addHandler(new InsureITHandler())
+transactionProcessor.addHandler(new InsureITData())
 
 
  /*addHandler adds the given handler to the transaction processor so
