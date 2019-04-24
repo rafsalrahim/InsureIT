@@ -28,9 +28,9 @@ export class PageComponent implements OnInit {
     const proc ="NHS"
     const action ="add"
     const FAMILYNAME = 'insureIT'
-    const servDt =await this.Form.sendData(Gender,idproof,date,Name,proc,action,FAMILYNAME);
+    //const servDt =await this.Form.sendData(Gender,idproof,date,Name,proc,action,FAMILYNAME);
     
-    this.servicedata="htis is service dAatta"+servDt;
+    //this.servicedata="htis is service dAatta"+servDt;
     //+servDt.toString();
     
   }

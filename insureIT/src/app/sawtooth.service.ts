@@ -196,12 +196,13 @@ private getDecodedData(responseJSON): string {
 
 
 
-  public async sendData(gender,idproof,date,name,proc,action,familyName) {
+  public async sendData(from,to,amt,Name,number,proc,action,familyName) {
 
     this.Family_name = familyName;
     
     try{
-
+      const address = this.hash('insureIT').substr(0, 6) + this.hash(Name).substr(0, 32) + this.hash(from).substr(0, 32);
+      console.log(address);
     const context = createContext('secp256k1');
     // Creating a random private key 
     const privateKey = context.newRandomPrivateKey();
@@ -209,7 +210,7 @@ private getDecodedData(responseJSON): string {
     this.publicKey=this.signer.getPublicKey().asHex();    
     // Encode the payload
     /*const payload = this.getEncodedData(action, values);*/    
-    const data = gender+ "," + idproof+ ","+ date +","+ name +"," +proc+ ","+ action;
+    const data = from+ "," + to+ ","+ amt +","+ Name +","+number+","+proc+ ","+ action;
     console.log(data+"data");
     const encData=new TextEncoder('utf8').encode(data);
     console.log("ThisAddress"+this.address)
@@ -243,6 +244,54 @@ private getDecodedData(responseJSON): string {
   
   }
 
+  /*
+  public async sendData(gender,idproof,date,name,proc,action,familyName) {
+
+    this.Family_name = familyName;
+    
+    try{
+
+    const context = createContext('secp256k1');
+    // Creating a random private key 
+    const privateKey = context.newRandomPrivateKey();
+    this.signer = new CryptoFactory(context).newSigner(privateKey);
+    this.publicKey=this.signer.getPublicKey().asHex();    
+    // Encode the payload
+    /*const payload = this.getEncodedData(action, values);    
+    const data = gender+ "," + idproof+ ","+ date +","+ name +"," +proc+ ","+ action;
+    console.log(data+"data");
+    const encData=new TextEncoder('utf8').encode(data);
+    console.log("ThisAddress"+this.address)
+    const transactionHeader = this.getTransactionHeaderBytes([this.addrNs], [this.address], encData);
+    console.log("After txn header")
+    // Create transaction
+    const transaction = this.getTransaction(transactionHeader, encData);
+    console.log("After transaction")
+    // Transaction list
+    const transactionsList = [transaction];
+    console.log("After transactionsList")
+   // Create a list of batches. In our case, one batch only in the list
+   const batchList = this.getBatchList(transactionsList);
+   console.log("After batchList")
+
+   // Send the batch to REST API
+    await this.sendToRestAPI(batchList)
+   .then((resp) => {
+     console.log("sendToRestAPI response", resp);
+   })
+   .catch((error) => {
+     console.log("error here", error);
+   })
+    return batchList;
+  }
+    catch (e) {
+      console.log("Error in reading the key details", e);
+      return "ERROR";
+  }
+  
+  
+  }
+*/
 
   public async insure(from,to,amt,Name,proc,action,familyName){
     this.Family_name = familyName;
@@ -257,7 +306,7 @@ private getDecodedData(responseJSON): string {
     // Encode the payload
     /*const payload = this.getEncodedData(action, values);*/    
     const data = from+ "," + to+ ","+ amt +","+ Name  +"," + proc+ ","+ action;
-    console.log(data+"data");
+    console.log(data+" "+"data");
     const encData=new TextEncoder('utf8').encode(data);
     console.log("ThisAddress"+this.address)
     const transactionHeader = this.getTransactionHeaderBytes([this.addrNs], [this.address], encData);

@@ -33,12 +33,20 @@ class InsureITHandler extends TransactionHandler {
 
   decodepayload(payload) {
     const payloadDecoded = {
-      Gender: payload[0],
+      /*Gender: payload[0],
       idNo: payload[1],
       Date: payload[2],
       name: payload[3],
       proc: payload[4],
-      action: payload[5],
+      action: payload[5],*/
+
+      from : payload[0],
+      to: payload[1],
+      amt: payload[2],
+      name:payload[3],
+      number:payload[4],
+      proc: payload[5],
+      action: payload[6],
     };
     return payloadDecoded;
   }
@@ -72,7 +80,9 @@ class InsureITHandler extends TransactionHandler {
     
 
     if (pl.action == 'add') {
-      const address = _hash('insureIT').substr(0, 6) + _hash(pl.idNo).substr(0, 32) + _hash(pl.name).substr(0, 32);
+      console.log("teste here")
+
+      const address = _hash('insureIT').substr(0, 6) + _hash(pl.name).substr(0, 32) + _hash(pl.from).substr(0, 32);
 
       return context.getState([address, superAddress])
         .then((currentStateMap) => {

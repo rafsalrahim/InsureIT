@@ -72,7 +72,7 @@ module.exports = "body {  padding: 5px; font-family: helvetica; font:15px;   }\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Policy Registration</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group\">\n\n      <label class=\"control-label col-sm-2\" id=\"name\">Name:</label>\n      <div class=\"col-sm-10\">\n        <input #Name type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"name\" name='Name' ngModel required pattern=\"^[a-zA-Z\\.]*$\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Date\">Date of Birth:</label>\n      <div class=\"col-sm-10\">\n        <input #date type=\"date\" class=\"form-control\" id=\"date\" placeholder=\"Date\" name='date' ngModel required>\n      </div>\n    </div>\n    \n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Gender\">Gender:</label>\n      <div class=\"col-sm-10\">\n              <select class=\"form-control\" id=\"Gender\" #Gender type=\"text\" name='Gender' ngModel required>\n                <option>Male</option>\n                <option>Female</option>\n                <option>Other</option>\n              </select>\n              <br>\n        </div>\n      </div>\n    \n  \n\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"idproof\">From</label>\n        <div class=\"col-sm-10\">\n          <input #from type=\"text\" ngModel required class=\"form-control\" id=\"from\" placeholder=\"The place from where you start your journey\" ngModel required  >\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cno\">To</label>\n        <div class=\"col-sm-10\">\n          <input #to type=\"text\" class=\"form-control\" id=\"to\" placeholder=\"\" name=\"to\" ngModel required maxlength=\"10\" >  \n  </div>\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cid\">Amount</label>\n        <div class=\"col-sm-10\">\n          <input #amt type=\"textarea\" class=\"form-control\" id=\"amt\" placeholder=\"Insurance Amount\" name=\"amt\" ngModel required>\n        </div>\n      </div>\n      \n      \n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f.valid\" (click)=\"addInsurance(Gender.value,from.value,to.value,amt.value,date.value,Name.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n\n"
+module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Policy Registration</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group\">\n\n      <label class=\"control-label col-sm-2\" id=\"name\">Name:</label>\n      <div class=\"col-sm-10\">\n        <input #Name type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"name\" name='Name' ngModel required pattern=\"^[a-zA-Z\\.]*$\">\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Date\">Date of Birth:</label>\n      <div class=\"col-sm-10\">\n        <input #date type=\"date\" class=\"form-control\" id=\"date\" placeholder=\"Date\" name='date' ngModel required>\n      </div>\n    </div>\n    \n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Gender\">Gender:</label>\n      <div class=\"col-sm-10\">\n              <select class=\"form-control\" id=\"Gender\" #Gender type=\"text\" name='Gender' ngModel required>\n                <option>Male</option>\n                <option>Female</option>\n                <option>Other</option>\n              </select>\n              <br>\n        </div>\n      </div>\n    \n  \n\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"idproof\">From</label>\n        <div class=\"col-sm-10\">\n          <input #from type=\"text\" ngModel required class=\"form-control\" id=\"from\" placeholder=\"from\" >\n   <small class=\"form-text text-muted\"></small>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cno\">To</label>\n        <div class=\"col-sm-10\">\n          <input #to type=\"text\" class=\"form-control\" id=\"to\" placeholder=\"to\" name=\"to\" (change)= \"get_products(from.value,to.value)\" ngModel required  >\n  <small class=\"form-text text-muted\"></small>      \n  </div>\n      </div>\n      <table class=\"table\" name=\"test_table\" id=\"test_table\" *ngIf=\"visible\">\n        <thead>\n            <tr>\n                <th>From</th>\n                <th>To</th>\n                <th>Flight Number</th>\n                <th>Date</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table;let i = index\" (click)=selectflight(Table[i])>\n    \n            <td>\n                <span>{{data.from}}</span>\n            </td>\n            <td>\n                <span>{{data.to}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n              <span>{{data.time}}</span>\n            </td>\n        </tr>\n    </table>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cid\">Amount</label>\n        <div class=\"col-sm-10\">\n          <input #amt type=\"textarea\" class=\"form-control\" id=\"cid\" placeholder=\"enter Insurance amount\" name=\"cid\" (change)= \"get_reward(amt.value)\" ngModel required>\n        </div>\n      </div>\n      \n      <table class=\"table\" name=\"rate_table\" id=\"rate_table\" *ngIf=\"visible2\">\n        <thead>\n            <tr>\n                <th>Delayed</th>\n                <th>Deviated</th>\n                <th>Cancelled</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table2;let i = index\" >\n    \n            <td>\n                <span>{{data.ac}}</span>\n            </td>\n            <td>\n                <span>{{data.ad}}</span>\n            </td>\n            <td>\n                <span>{{data.ab}}</span>\n            </td>\n        </tr>\n    </table>\n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f.valid\" (click)=\"addInsurance(Gender.value,from.value,to.value,amt.value,date.value,Name.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n"
 
 /***/ }),
 
@@ -89,18 +89,54 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _sawtooth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sawtooth.service */ "./src/app/sawtooth.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
 
 
 
 var AboutComponent = /** @class */ (function () {
-    function AboutComponent(Form) {
+    function AboutComponent(Form, httpClient) {
         this.Form = Form;
-        this.users = [];
+        this.httpClient = httpClient;
+        this.cusers = [];
         this.clickMessage = "";
         this.servicedata = "";
+        this.baseUrl = "http://localhost:3000";
+        this.id = '3Z7311';
+        this.frm = 'THIRUVANANTHAPURAM';
+        this.to = "KOCHI";
+        this.visible = false;
+        this.visible2 = false;
         console.log("Inside page component.ts");
     }
     AboutComponent.prototype.ngOnInit = function () {
+    };
+    AboutComponent.prototype.get_products = function (from, to) {
+        var _this = this;
+        //this.httpClient.get(this.baseUrl + '/flights?iataNumber='+this.id).subscribe((res)=>{
+        this.httpClient.get(this.baseUrl + '/flights?from=' + from + '&to=' + to + '&status=Scheduled').subscribe(function (res) {
+            console.log(res);
+            console.log("hello");
+            _this.visible = true;
+            _this.Table = res;
+            console.log(_this.baseUrl + '/flights?from=' + from + '&to=' + to + '&status=Scheduled');
+        });
+    };
+    AboutComponent.prototype.selectflight = function (i) {
+        //var index = i[2];
+        this.number = i.number;
+        this.time = i.time;
+        console.log(this.number);
+        this.visible = false;
+    };
+    AboutComponent.prototype.get_reward = function (amt) {
+        console.log("hello");
+        this.visible2 = true;
+        this.amt = Number(amt);
+        this.cancelled = this.amt * 5;
+        this.delayed = this.amt * 7;
+        this.deviated = this.amt * 7;
+        this.Table2 = [{ "ab": this.cancelled, "ac": this.delayed, "ad": this.deviated }];
     };
     AboutComponent.prototype.addInsurance = function (Gender, from, to, amt, date, Name) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -108,10 +144,10 @@ var AboutComponent = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        proc = "INS";
-                        action = "insured";
-                        FAMILYNAME = 'datainsure';
-                        return [4 /*yield*/, this.Form.insure(from, to, amt, Name, proc, action, FAMILYNAME)];
+                        proc = "NHS";
+                        action = "add";
+                        FAMILYNAME = 'insureIT';
+                        return [4 /*yield*/, this.Form.sendData(from, to, amt, Name, this.number, proc, action, FAMILYNAME)];
                     case 1:
                         servDt = _a.sent();
                         this.servicedata = "htis is service dAatta" + servDt;
@@ -126,7 +162,7 @@ var AboutComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./about.component.html */ "./src/app/about/about.component.html"),
             styles: [__webpack_require__(/*! ./about.component.css */ "./src/app/about/about.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_sawtooth_service__WEBPACK_IMPORTED_MODULE_2__["SawtoothService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_sawtooth_service__WEBPACK_IMPORTED_MODULE_2__["SawtoothService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], AboutComponent);
     return AboutComponent;
 }());
@@ -317,7 +353,7 @@ module.exports = "/*random comment*/\n/*# sourceMappingURL=data:application/json
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n    </div>\n\n    </form>\n  </div>\n\n\n"
+module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getList()\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n    </div>\n\n    </form>\n  </div>\n\n\n"
 
 /***/ }),
 
@@ -333,12 +369,97 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EventsbarComponent", function() { return EventsbarComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _sawtooth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sawtooth.service */ "./src/app/sawtooth.service.ts");
+/* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! buffer/ */ "./node_modules/buffer/index.js");
+/* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(buffer___WEBPACK_IMPORTED_MODULE_3__);
+
+
 
 
 var EventsbarComponent = /** @class */ (function () {
-    function EventsbarComponent() {
+    function EventsbarComponent(Form) {
+        this.Form = Form;
+        this.users = [];
+        this.donr = [];
+        this.recp = [];
+        this.recpList = [];
+        this.donrList = [];
+        this.clickMessage = "";
+        this.servicedata = "";
+        var nhs = "NHS";
     }
     EventsbarComponent.prototype.ngOnInit = function () {
+    };
+    EventsbarComponent.prototype.getList = function () {
+        var _this = this;
+        return this.Form.getStateD(this.Form.address)
+            .subscribe(function (resp) {
+            var dataString = JSON.stringify(resp);
+            var data = JSON.parse(dataString);
+            var stateDataEnc = data.data;
+            var stateDecoded = atob(stateDataEnc);
+            _this.state = JSON.parse(stateDecoded);
+            _this.addrArray = _this.state.address;
+            for (var i in _this.addrArray) {
+                _this.getData(_this.addrArray[i]);
+            }
+        });
+    };
+    EventsbarComponent.prototype.getDecodedData = function (responseJSON) {
+        var dataBytes = responseJSON.data;
+        var decodedData = new buffer___WEBPACK_IMPORTED_MODULE_3__["Buffer"](dataBytes, 'base64').toString();
+        return decodedData;
+    };
+    EventsbarComponent.prototype.getData = function (addr) {
+        var _this = this;
+        return this.Form.getStateD(addr)
+            .subscribe(function (resp) {
+            var dataString = JSON.stringify(resp);
+            var data = JSON.parse(dataString);
+            var stateDataEnc = data.data;
+            var stateDecoded = atob(stateDataEnc);
+            _this.state = JSON.parse(stateDecoded);
+            console.log("bkp 0");
+            console.log("bkp 1");
+            return _this.Form.getTxnD(_this.state.Txnid)
+                .subscribe(function (response) {
+                var dt1 = JSON.stringify(response);
+                var dt2 = JSON.parse(dt1);
+                var dt3 = dt2.data;
+                var dt4 = dt3.payload;
+                _this.stateDt = new buffer___WEBPACK_IMPORTED_MODULE_3__["Buffer"](dt4, "base64").toString();
+                var Details = _this.stateDt.split(',');
+                _this.detailsList = {
+                    from: Details[0],
+                    to: Details[1],
+                    amt: Details[2],
+                    name: Details[3],
+                    number: Details[4],
+                    proc: Details[5],
+                    action: Details[6],
+                    addr: addr
+                    //status:this.state.Status,
+                    //txnid:this.state.Txnid
+                };
+                /*
+                          if(addr.substr(0,22)==this.Form.hash("insureIT").substr(0,6)+this.Form.hash("resp").substr(0,16)){
+                            console.log(addr,"KJADIHEGFFFFGWwhfgwHU")
+                            this.recp.push(this.detailsList)
+                          }
+                          else if(addr.substr(0,22)==this.Form.hash("hygieia").substr(0,6)+this.Form.hash("NHS").substr(0,16)){
+                            console.log(addr,"ewfg")
+                            this.donr.push(this.detailsList)
+                          }
+                         else{
+                           console.log("Error in detail List")
+                         }*/
+                console.log(_this.detailsList);
+                console.log("Name is " + _this.stateDt);
+                console.log("batchlist null", _this.stateDt);
+            });
+        }, function (error) {
+            console.log(error);
+        });
     };
     EventsbarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -346,7 +467,7 @@ var EventsbarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./eventsbar.component.html */ "./src/app/eventsbar/eventsbar.component.html"),
             styles: [__webpack_require__(/*! ./eventsbar.component.css */ "./src/app/eventsbar/eventsbar.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_sawtooth_service__WEBPACK_IMPORTED_MODULE_2__["SawtoothService"]])
     ], EventsbarComponent);
     return EventsbarComponent;
 }());
@@ -517,21 +638,14 @@ var PageComponent = /** @class */ (function () {
     };
     PageComponent.prototype.addForm = function (Gender, idproof, date, Name) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var proc, action, FAMILYNAME, servDt;
+            var proc, action, FAMILYNAME;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        // event.preventDefault();
-                        this.clickMessage = "Gender: " + Gender + " Registration Date:" + date + " Name:" + Name;
-                        proc = "NHS";
-                        action = "add";
-                        FAMILYNAME = 'insureIT';
-                        return [4 /*yield*/, this.Form.sendData(Gender, idproof, date, Name, proc, action, FAMILYNAME)];
-                    case 1:
-                        servDt = _a.sent();
-                        this.servicedata = "htis is service dAatta" + servDt;
-                        return [2 /*return*/];
-                }
+                // event.preventDefault();
+                this.clickMessage = "Gender: " + Gender + " Registration Date:" + date + " Name:" + Name;
+                proc = "NHS";
+                action = "add";
+                FAMILYNAME = 'insureIT';
+                return [2 /*return*/];
             });
         });
     };
@@ -733,9 +847,9 @@ var SawtoothService = /** @class */ (function () {
     SawtoothService.prototype.superAddress = function (superAddress) {
         throw new Error("Method not implemented.");
     };
-    SawtoothService.prototype.sendData = function (gender, idproof, date, name, proc, action, familyName) {
+    SawtoothService.prototype.sendData = function (from, to, amt, Name, number, proc, action, familyName) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var context, privateKey, data, encData, transactionHeader, transaction, transactionsList, batchList, e_1;
+            var address, context, privateKey, data, encData, transactionHeader, transaction, transactionsList, batchList, e_1;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -743,11 +857,13 @@ var SawtoothService = /** @class */ (function () {
                         _a.label = 1;
                     case 1:
                         _a.trys.push([1, 3, , 4]);
+                        address = this.hash('insureIT').substr(0, 6) + this.hash(Name).substr(0, 32) + this.hash(from).substr(0, 32);
+                        console.log(address);
                         context = Object(sawtooth_sdk_signing__WEBPACK_IMPORTED_MODULE_4__["createContext"])('secp256k1');
                         privateKey = context.newRandomPrivateKey();
                         this.signer = new sawtooth_sdk_signing__WEBPACK_IMPORTED_MODULE_4__["CryptoFactory"](context).newSigner(privateKey);
                         this.publicKey = this.signer.getPublicKey().asHex();
-                        data = gender + "," + idproof + "," + date + "," + name + "," + proc + "," + action;
+                        data = from + "," + to + "," + amt + "," + Name + "," + number + "," + proc + "," + action;
                         console.log(data + "data");
                         encData = new text_encoding_lib_encoding__WEBPACK_IMPORTED_MODULE_7__["TextEncoder"]('utf8').encode(data);
                         console.log("ThisAddress" + this.address);
@@ -780,6 +896,54 @@ var SawtoothService = /** @class */ (function () {
             });
         });
     };
+    /*
+    public async sendData(gender,idproof,date,name,proc,action,familyName) {
+  
+      this.Family_name = familyName;
+      
+      try{
+  
+      const context = createContext('secp256k1');
+      // Creating a random private key
+      const privateKey = context.newRandomPrivateKey();
+      this.signer = new CryptoFactory(context).newSigner(privateKey);
+      this.publicKey=this.signer.getPublicKey().asHex();
+      // Encode the payload
+      /*const payload = this.getEncodedData(action, values);
+      const data = gender+ "," + idproof+ ","+ date +","+ name +"," +proc+ ","+ action;
+      console.log(data+"data");
+      const encData=new TextEncoder('utf8').encode(data);
+      console.log("ThisAddress"+this.address)
+      const transactionHeader = this.getTransactionHeaderBytes([this.addrNs], [this.address], encData);
+      console.log("After txn header")
+      // Create transaction
+      const transaction = this.getTransaction(transactionHeader, encData);
+      console.log("After transaction")
+      // Transaction list
+      const transactionsList = [transaction];
+      console.log("After transactionsList")
+     // Create a list of batches. In our case, one batch only in the list
+     const batchList = this.getBatchList(transactionsList);
+     console.log("After batchList")
+  
+     // Send the batch to REST API
+      await this.sendToRestAPI(batchList)
+     .then((resp) => {
+       console.log("sendToRestAPI response", resp);
+     })
+     .catch((error) => {
+       console.log("error here", error);
+     })
+      return batchList;
+    }
+      catch (e) {
+        console.log("Error in reading the key details", e);
+        return "ERROR";
+    }
+    
+    
+    }
+  */
     SawtoothService.prototype.insure = function (from, to, amt, Name, proc, action, familyName) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var context, privateKey, data, encData, transactionHeader, transaction, transactionsList, batchList, e_2;
@@ -795,7 +959,7 @@ var SawtoothService = /** @class */ (function () {
                         this.signer = new sawtooth_sdk_signing__WEBPACK_IMPORTED_MODULE_4__["CryptoFactory"](context).newSigner(privateKey);
                         this.publicKey = this.signer.getPublicKey().asHex();
                         data = from + "," + to + "," + amt + "," + Name + "," + proc + "," + action;
-                        console.log(data + "data");
+                        console.log(data + " " + "data");
                         encData = new text_encoding_lib_encoding__WEBPACK_IMPORTED_MODULE_7__["TextEncoder"]('utf8').encode(data);
                         console.log("ThisAddress" + this.address);
                         transactionHeader = this.getTransactionHeaderBytes([this.addrNs], [this.address], encData);

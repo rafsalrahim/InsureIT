@@ -57,13 +57,13 @@ class InsureITData extends TransactionHandler{
         const header = transacationProcessRequest.header;
         const pblckey = header.signerPublicKey;
         const ipaddr = header.inputs[0];
-        const superAddress = _hash('datainsure').substring(0, 70);
+        const superAddress = _hash('insureIT').substring(0, 70);
         
         const txnId = transacationProcessRequest.signature;
         
     
         if (pl.action == 'insured') {
-          const address = _hash('datainsuregit').substr(0, 6) + _hash(pl.from).substr(0, 32) + _hash(pl.name).substr(0, 32);
+          const address = _hash('datainsure').substr(0, 6) + _hash(pl.from).substr(0, 32) + _hash(pl.name).substr(0, 32);
     
           return context.getState([address, superAddress])
             .then((currentStateMap) => {
@@ -90,11 +90,7 @@ class InsureITData extends TransactionHandler{
                 const superVal = {
                   [superAddress]: addressEncoded,
                 };
-    
-              
-    
-    
-             const myState = currentStateMap[address];
+              const myState = currentStateMap[address];
               if (myState == '' || myState == null) { // registering from NHS
                 newTxnId = txnId;
                 newStatus = 'Unmatched';

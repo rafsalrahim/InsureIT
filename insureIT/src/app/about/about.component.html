@@ -40,23 +40,70 @@
       <div class="form-group">
         <label class="control-label col-sm-2" id="idproof">From</label>
         <div class="col-sm-10">
-          <input #from type="text" ngModel required class="form-control" id="from" placeholder="The place from where you start your journey" ngModel required  >
+          <input #from type="text" ngModel required class="form-control" id="from" placeholder="from" >
+   <small class="form-text text-muted"></small>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" id="cno">To</label>
         <div class="col-sm-10">
-          <input #to type="text" class="form-control" id="to" placeholder="" name="to" ngModel required maxlength="10" >  
+          <input #to type="text" class="form-control" id="to" placeholder="to" name="to" (change)= "get_products(from.value,to.value)" ngModel required  >
+  <small class="form-text text-muted"></small>      
   </div>
       </div>
+      <table class="table" name="test_table" id="test_table" *ngIf="visible">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>To</th>
+                <th>Flight Number</th>
+                <th>Date</th>
+        </thead>
+    
+        <tr *ngFor="let data of Table;let i = index" (click)=selectflight(Table[i])>
+    
+            <td>
+                <span>{{data.from}}</span>
+            </td>
+            <td>
+                <span>{{data.to}}</span>
+            </td>
+            <td>
+                <span>{{data.number}}</span>
+            </td>
+            <td>
+              <span>{{data.time}}</span>
+            </td>
+        </tr>
+    </table>
       <div class="form-group">
         <label class="control-label col-sm-2" id="cid">Amount</label>
         <div class="col-sm-10">
-          <input #amt type="textarea" class="form-control" id="amt" placeholder="Insurance Amount" name="amt" ngModel required>
+          <input #amt type="textarea" class="form-control" id="cid" placeholder="enter Insurance amount" name="cid" (change)= "get_reward(amt.value)" ngModel required>
         </div>
       </div>
       
-      
+      <table class="table" name="rate_table" id="rate_table" *ngIf="visible2">
+        <thead>
+            <tr>
+                <th>Delayed</th>
+                <th>Deviated</th>
+                <th>Cancelled</th>
+        </thead>
+    
+        <tr *ngFor="let data of Table2;let i = index" >
+    
+            <td>
+                <span>{{data.ac}}</span>
+            </td>
+            <td>
+                <span>{{data.ad}}</span>
+            </td>
+            <td>
+                <span>{{data.ab}}</span>
+            </td>
+        </tr>
+    </table>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
           <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="addInsurance(Gender.value,from.value,to.value,amt.value,date.value,Name.value)">Submit</button>
@@ -64,4 +111,3 @@
       </div>
     </form>
   </div>
-
