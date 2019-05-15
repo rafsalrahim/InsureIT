@@ -1,4 +1,4 @@
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit, ViewChild }  from '@angular/core';
 import { SawtoothService } from '../sawtooth.service';
 import { Router } from "@angular/router";
 
@@ -20,7 +20,8 @@ export class PageComponent implements OnInit {
   clickMessage="";
   servicedata="";
   public edited = false;
-
+  public visible=false;
+  public errors=false;
 
   constructor(private Form:SawtoothService,private router: Router) { 
     console.log("Inside page component.ts")
@@ -31,6 +32,11 @@ export class PageComponent implements OnInit {
   ngOnInit() {
   
   }
+
+  @ViewChild('date') frmdate;
+  @ViewChild('date_validate') validate;
+
+
   saveTodos(): void {
     //show box msg
     this.edited = true;
@@ -42,7 +48,18 @@ export class PageComponent implements OnInit {
     }.bind(this), 6000);
    } 
 
-
+   validateDOB(e){
+     let year = new Date(e).getFullYear();
+     let today = new Date().getFullYear();
+     if(today - year <= 18){
+       //Code Something
+       //document.getElementById("date")="";
+       this.frmdate.nativeElement.value="";
+       this.visible=true;
+       console.log("hello inside val");
+     }
+   }
+   
 //async addForm(Gender:string,idproof:string,date:string,Name:string){
   async addForm2(firstname:string,lastname:string,Gender:string,idproof:string,date:string,email:string){
    // event.preventDefault();

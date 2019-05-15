@@ -11,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
 import { EventsbarComponent } from './eventsbar/eventsbar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LogComponent } from './log/log.component';
 //something
 
 
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     AboutComponent,
     MainComponent,
     EventsbarComponent,
+    LogComponent,
 
   
   ],

@@ -30,7 +30,7 @@ export class EventsbarComponent implements OnInit {
     
     const nhs="NHS"
     setInterval(()=> { this.getList_rep() }, 60000);
-    //this.getList();
+    this.getList();
    
   }
 

@@ -13,13 +13,16 @@
 
       <label class="control-label col-sm-2" id="name">Customer unique ID</label>
       <div class="col-sm-10">
-        <input #userid type="text" class="form-control" id="userid" placeholder="Unique ID" name='userid' ngModel required>
+        <input #userid type="text" class="form-control" id="userid" placeholder="Unique ID" (change)= "getvalid(userid.value)" name='userid' ngModel required>
+      </div>
+      <div class="alert alert-danger" role="alert" id="date_validate" *ngIf="visible_val">
+        Enterv Valied User ID. #Check your Mail#
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" id="Date">Date of departure:</label>
       <div class="col-sm-10">
-        <input #date type="date" class="form-control" id="date" placeholder="Date" name='date' ngModel required>
+        <input #date type="date" class="form-control" id="dates"  placeholder="Date" name='date' ngModel required>
       </div>
     </div>
     
@@ -29,6 +32,7 @@
           <input #from type="text" ngModel required class="form-control" id="from" placeholder="from" name="from" >
     <small class="form-text text-muted"></small>
         </div>
+
       </div>
       <div class="form-group">
         <label class="control-label col-sm-2" id="cno">To</label>

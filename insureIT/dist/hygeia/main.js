@@ -72,7 +72,7 @@ module.exports = "body {  padding: 5px; font-family: helvetica; font:15px;   }\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Policy Registration</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group\">\n\n      <label class=\"control-label col-sm-2\" id=\"name\">Customer unique ID</label>\n      <div class=\"col-sm-10\">\n        <input #userid type=\"text\" class=\"form-control\" id=\"userid\" placeholder=\"Unique ID\" name='userid' ngModel required>\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Date\">Date of departure:</label>\n      <div class=\"col-sm-10\">\n        <input #date type=\"date\" class=\"form-control\" id=\"date\" placeholder=\"Date\" name='date' ngModel required>\n      </div>\n    </div>\n    \n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >From</label>\n        <div class=\"col-sm-10\">\n          <input #from type=\"text\" ngModel required class=\"form-control\" id=\"from\" placeholder=\"from\" name=\"from\" >\n    <small class=\"form-text text-muted\"></small>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cno\">To</label>\n        <div class=\"col-sm-10\">\n          <input #to type=\"text\" class=\"form-control\" id=\"to\" placeholder=\"to\" name=\"to\" (change)= \"get_products(from.value,to.value)\" ngModel required  >\n  <small class=\"form-text text-muted\"></small>      \n  </div>\n      </div>\n      <table class=\"table col-sm-10\" name=\"test_table\" id=\"test_table\" *ngIf=\"visible\">\n        <thead>\n            <tr>\n                <th>From</th>\n                <th>To</th>\n                <th>Flight Number</th>\n                <th>Time</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table;let i = index\" (click)=selectflight(Table[i])>\n    \n            <td>\n                <span>{{data.from}}</span>\n            </td>\n            <td>\n                <span>{{data.to}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n              <span>{{data.time}}</span>\n            </td>\n        </tr>\n    </table>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >Amount</label>\n        <div class=\"col-sm-10\">\n          <!-- <input #amt type=\"textarea\" class=\"form-control\" id=\"cid\" placeholder=\"enter Insurance amount\" name=\"cid\" (change)= \"get_reward(amt.value)\" ngModel required> -->\n          <select class=\"form-control\" id=\"policyamt\" #policyamt type=\"text\" name='policyamt'  (change)= \"get_reward(policyamt.value)\" ngModel required>\n              <option>45</option>\n              <option>100</option>\n              <option>200</option>\n              <option>400</option>\n            </select>\n            <br>\n        \n        </div>\n      </div>\n      \n       <table class=\"table col-sm-10\" name=\"rate_table\" id=\"rate_table\" *ngIf=\"visible2\">\n         \n        <thead>\n          <tr><th colspan=\"3\"><p>Payouts for premium Selected: </p></th></tr>\n            <tr>\n                <th>Delayed</th>\n                <th>Deviated</th>\n                <th>Cancelled</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table2;let i = index\" >\n    \n            <td>\n                <span>{{data.ac}}</span>\n            </td>\n            <td>\n                <span>{{data.ad}}</span>\n            </td>\n            <td>\n                <span>{{data.ab}}</span>\n            </td>\n        </tr>\n    </table> \n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f.valid\" (click)=\"addInsurance(from.value,to.value,policyamt.value,date.value,userid.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n"
+module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Policy Registration</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group\">\n\n      <label class=\"control-label col-sm-2\" id=\"name\">Customer unique ID</label>\n      <div class=\"col-sm-10\">\n        <input #userid type=\"text\" class=\"form-control\" id=\"userid\" placeholder=\"Unique ID\" (change)= \"getvalid(userid.value)\" name='userid' ngModel required>\n      </div>\n      <div class=\"alert alert-danger\" role=\"alert\" id=\"date_validate\" *ngIf=\"visible_val\">\n        Enterv Valied User ID. #Check your Mail#\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Date\">Date of departure:</label>\n      <div class=\"col-sm-10\">\n        <input #date type=\"date\" class=\"form-control\" id=\"date\"  placeholder=\"Date\" name='date' ngModel required>\n      </div>\n    </div>\n    \n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >From</label>\n        <div class=\"col-sm-10\">\n          <input #from type=\"text\" ngModel required class=\"form-control\" id=\"from\" placeholder=\"from\" name=\"from\" >\n    <small class=\"form-text text-muted\"></small>\n        </div>\n\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cno\">To</label>\n        <div class=\"col-sm-10\">\n          <input #to type=\"text\" class=\"form-control\" id=\"to\" placeholder=\"to\" name=\"to\" (change)= \"get_products(from.value,to.value)\" ngModel required  >\n  <small class=\"form-text text-muted\"></small>      \n  </div>\n      </div>\n      <table class=\"table col-sm-10\" name=\"test_table\" id=\"test_table\" *ngIf=\"visible\">\n        <thead>\n            <tr>\n                <th>From</th>\n                <th>To</th>\n                <th>Flight Number</th>\n                <th>Time</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table;let i = index\" (click)=selectflight(Table[i])>\n    \n            <td>\n                <span>{{data.from}}</span>\n            </td>\n            <td>\n                <span>{{data.to}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n              <span>{{data.time}}</span>\n            </td>\n        </tr>\n    </table>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >Amount</label>\n        <div class=\"col-sm-10\">\n          <!-- <input #amt type=\"textarea\" class=\"form-control\" id=\"cid\" placeholder=\"enter Insurance amount\" name=\"cid\" (change)= \"get_reward(amt.value)\" ngModel required> -->\n          <select class=\"form-control\" id=\"policyamt\" #policyamt type=\"text\" name='policyamt'  (change)= \"get_reward(policyamt.value)\" ngModel required>\n              <option>45</option>\n              <option>100</option>\n              <option>200</option>\n              <option>400</option>\n            </select>\n            <br>\n        \n        </div>\n      </div>\n      \n       <table class=\"table col-sm-10\" name=\"rate_table\" id=\"rate_table\" *ngIf=\"visible2\">\n         \n        <thead>\n          <tr><th colspan=\"3\"><p>Payouts for premium Selected: </p></th></tr>\n            <tr>\n                <th>Delayed</th>\n                <th>Deviated</th>\n                <th>Cancelled</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table2;let i = index\" >\n    \n            <td>\n                <span>{{data.ac}}</span>\n            </td>\n            <td>\n                <span>{{data.ad}}</span>\n            </td>\n            <td>\n                <span>{{data.ab}}</span>\n            </td>\n        </tr>\n    </table> \n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f.valid\" (click)=\"addInsurance(from.value,to.value,policyamt.value,date.value,userid.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n"
 
 /***/ }),
 
@@ -90,6 +90,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _sawtooth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sawtooth.service */ "./src/app/sawtooth.service.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! buffer/ */ "./node_modules/buffer/index.js");
+/* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(buffer___WEBPACK_IMPORTED_MODULE_4__);
+
 
 
 
@@ -105,12 +108,76 @@ var AboutComponent = /** @class */ (function () {
         this.id = '3Z7311';
         this.frm = 'THIRUVANANTHAPURAM';
         this.to = "KOCHI";
+        this.errval = false;
         this.visible = false;
         this.visible2 = false;
+        this.visible_val = false;
         console.log("Inside page component.ts");
+        this.today = new Date(),
+            this.day = this.today.getDate(),
+            this.month = this.today.getMonth() + 1, //January is 0
+            this.year = this.today.getFullYear();
+        if (this.day < 10) {
+            this.day = '0' + this.day;
+        }
+        if (this.month < 10) {
+            this.month = '0' + this.month;
+        }
+        this.today = this.year + '-' + this.month + '-' + this.day;
+        document.getElementById("date").setAttribute("min", this.today);
     }
     AboutComponent.prototype.ngOnInit = function () {
     };
+    AboutComponent.prototype.getvalid = function (add) {
+        this.getData(add);
+    };
+    AboutComponent.prototype.getData = function (addr) {
+        var _this = this;
+        this.errval = false;
+        return this.Form.getStateD(addr)
+            .subscribe(function (resp) {
+            var dataString = JSON.stringify(resp);
+            var data = JSON.parse(dataString);
+            var stateDataEnc = data.data;
+            var stateDecoded = atob(stateDataEnc);
+            _this.state = JSON.parse(stateDecoded);
+            console.log("bkp 0");
+            console.log("bkp 1");
+            return _this.Form.getTxnD(_this.state.Txnid)
+                .subscribe(function (response) {
+                var dt1 = JSON.stringify(response);
+                var dt2 = JSON.parse(dt1);
+                var dt3 = dt2.data;
+                var dt4 = dt3.payload;
+                _this.stateDt = new buffer___WEBPACK_IMPORTED_MODULE_4__["Buffer"](dt4, "base64").toString();
+                var Details = _this.stateDt.split(',');
+                _this.detailsList = {
+                    from: Details[0],
+                    to: Details[1],
+                    amt: Details[2],
+                    name: Details[3],
+                    number: Details[4],
+                    status: Details[5],
+                    proc: Details[6],
+                    action: Details[7],
+                    addr: addr
+                };
+                if (Details[7] == "add_data") {
+                    console.log("exist");
+                    _this.errval = true;
+                }
+                else {
+                    _this.visible_val = true;
+                    _this.idusr.nativeElement.value = "";
+                }
+            });
+        }, function (error) {
+            console.log(error);
+            _this.visible_val = true;
+            _this.idusr.nativeElement.value = "";
+        });
+    };
+    //}
     AboutComponent.prototype.get_products = function (from, to) {
         var _this = this;
         //this.httpClient.get(this.baseUrl + '/flights?iataNumber='+this.id).subscribe((res)=>{
@@ -159,6 +226,10 @@ var AboutComponent = /** @class */ (function () {
             });
         });
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('userid'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], AboutComponent.prototype, "idusr", void 0);
     AboutComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-about',
@@ -191,6 +262,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _about_about_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./about/about.component */ "./src/app/about/about.component.ts");
 /* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
 /* harmony import */ var _eventsbar_eventsbar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./eventsbar/eventsbar.component */ "./src/app/eventsbar/eventsbar.component.ts");
+/* harmony import */ var _log_log_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./log/log.component */ "./src/app/log/log.component.ts");
+
 
 
 
@@ -202,7 +275,8 @@ var routes = [
     { path: '', component: _main_main_component__WEBPACK_IMPORTED_MODULE_5__["MainComponent"] },
     { path: 'home', component: _page_page_component__WEBPACK_IMPORTED_MODULE_3__["PageComponent"] },
     { path: 'about', component: _about_about_component__WEBPACK_IMPORTED_MODULE_4__["AboutComponent"] },
-    { path: 'events', component: _eventsbar_eventsbar_component__WEBPACK_IMPORTED_MODULE_6__["EventsbarComponent"] }
+    { path: 'events', component: _eventsbar_eventsbar_component__WEBPACK_IMPORTED_MODULE_6__["EventsbarComponent"] },
+    { path: 'log', component: _log_log_component__WEBPACK_IMPORTED_MODULE_7__["LogComponent"] }
 ];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
@@ -296,6 +370,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _main_main_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./main/main.component */ "./src/app/main/main.component.ts");
 /* harmony import */ var _eventsbar_eventsbar_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./eventsbar/eventsbar.component */ "./src/app/eventsbar/eventsbar.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _log_log_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./log/log.component */ "./src/app/log/log.component.ts");
+
 
 
 
@@ -321,6 +397,7 @@ var AppModule = /** @class */ (function () {
                 _about_about_component__WEBPACK_IMPORTED_MODULE_8__["AboutComponent"],
                 _main_main_component__WEBPACK_IMPORTED_MODULE_9__["MainComponent"],
                 _eventsbar_eventsbar_component__WEBPACK_IMPORTED_MODULE_10__["EventsbarComponent"],
+                _log_log_component__WEBPACK_IMPORTED_MODULE_12__["LogComponent"],
             ],
             imports: [
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_11__["HttpClientModule"],
@@ -357,7 +434,7 @@ module.exports = "/*random comment*/\n/*# sourceMappingURL=data:application/json
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getData(search.value)\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input #search type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n      <table class=\"table\" name=\"data_table\" id=\"data_table\" *ngIf=\"visible2\">\n        <thead>\n            <tr>\n                <th>Name</th>\n                <th>Number</th>\n                <th>Status</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of recp;let i = index\" >\n    \n            <td>\n                <span>{{data.name}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n                <span>{{data.status}}</span>\n            </td>\n        </tr>\n    </table>\n    </div>\n\n    </form>\n  </div>\n\n\n"
+module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getData(search.value)\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input #search type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n      <table class=\"table\" name=\"data_table\" id=\"data_table\" *ngIf=\"visible2\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Number</th>\n                <th>Status</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of recp;let i = index\" >\n    \n            <td>\n                <span>{{data.name}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n                <span>{{data.status}}</span>\n            </td>\n        </tr>\n    </table>\n    </div>\n\n    </form>\n  </div>\n\n\n"
 
 /***/ }),
 
@@ -398,7 +475,7 @@ var EventsbarComponent = /** @class */ (function () {
         this.visible2 = false;
         var nhs = "NHS";
         setInterval(function () { _this.getList_rep(); }, 60000);
-        //this.getList();
+        this.getList();
     }
     EventsbarComponent.prototype.ngOnInit = function () {
     };
@@ -655,6 +732,73 @@ var EventsbarComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/log/log.component.css":
+/*!***************************************!*\
+  !*** ./src/app/log/log.component.css ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2xvZy9sb2cuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/log/log.component.html":
+/*!****************************************!*\
+  !*** ./src/app/log/log.component.html ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"logdat()\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input #search type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n      <table class=\"table\" name=\"data_table\" id=\"data_table\" *ngIf=\"visible2\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Number</th>\n                <th>Status</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of recp;let i = index\" >\n    \n            <td>\n                <span>{{data.name}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n                <span>{{data.status}}</span>\n            </td>\n        </tr>\n    </table>\n    </div>\n\n    </form>\n  </div>\n\n\n\n"
+
+/***/ }),
+
+/***/ "./src/app/log/log.component.ts":
+/*!**************************************!*\
+  !*** ./src/app/log/log.component.ts ***!
+  \**************************************/
+/*! exports provided: LogComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LogComponent", function() { return LogComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _sawtooth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sawtooth.service */ "./src/app/sawtooth.service.ts");
+
+
+
+var LogComponent = /** @class */ (function () {
+    function LogComponent(Form) {
+        this.Form = Form;
+        this.visible2 = false;
+        this.recp = [];
+        this.logdat();
+    }
+    LogComponent.prototype.ngOnInit = function () {
+    };
+    LogComponent.prototype.logdat = function () {
+        this.visible2 = true;
+        this.detailsList = this.Form.logdata_list();
+        this.recp.push(this.detailsList);
+    };
+    LogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-log',
+            template: __webpack_require__(/*! ./log.component.html */ "./src/app/log/log.component.html"),
+            styles: [__webpack_require__(/*! ./log.component.css */ "./src/app/log/log.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_sawtooth_service__WEBPACK_IMPORTED_MODULE_2__["SawtoothService"]])
+    ], LogComponent);
+    return LogComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/main/main.component.css":
 /*!*****************************************!*\
   !*** ./src/app/main/main.component.css ***!
@@ -729,7 +873,7 @@ module.exports = "body {  padding: 5px; font-family: helvetica; font:15px;  }\n.
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark \">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" routerLink =\"\">  <legend>{{title}}\n    </legend></a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n      <ul class=\"navbar-nav ml-auto\">\n          <li class=\"nav-item active\">\n              <a class=\"nav-link\" routerLink=\"\">Home</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink=\"home\">Customer Registration</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink =\"about\">Take Policy</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink =\"events\">Search Policy</a>\n          </li>\n      </ul>\n      <br/>\n    </div>\n  </div>\n</nav>\n"
+module.exports = "\n<nav class=\"navbar navbar-expand-lg navbar-dark bg-dark \">\n  <div class=\"container\">\n    <a class=\"navbar-brand\" routerLink =\"\">  <legend>{{title}}\n    </legend></a>\n    <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarResponsive\" aria-controls=\"navbarResponsive\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div class=\"collapse navbar-collapse\" id=\"navbarResponsive\">\n      <ul class=\"navbar-nav ml-auto\">\n          <li class=\"nav-item active\">\n              <a class=\"nav-link\" routerLink=\"\">Home</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink=\"home\">Customer Registration</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink =\"about\">Take Policy</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink =\"events\">Search Policy</a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" routerLink =\"log\">Log Policy</a>\n          </li>\n      </ul>\n      <br/>\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -785,7 +929,7 @@ module.exports = "body {  padding: 5px; font-family: helvetica; font:15px;   }\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Sign up Page</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n\n<div class=\"container\">\n\n  <form  class=\"form\"  #f2=\"ngForm\" >\n      <div class=\"alert alert-success fade show\" role=\"alert\" id=\"success_alert\" *ngIf=\"edited\" >\n          <h4 class=\"alert-heading\">Well done!</h4>\n          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>\n          <hr>\n          <p class=\"mb-0\">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>\n        </div>\n    <div class=\"form-group col-sm-10\">\n\n      <label class=\"control-label col-sm-2\" >Name:</label>\n      <div class=\"form-row\">     \n      <div class=\"col\">\n        <input #firstname type=\"text\" class=\"form-control\" id=\"firstname\" placeholder=\"First Name\" name='firstname' ngModel required pattern=\"^[a-zA-Z\\.]*$\">\n      </div>\n      <div class=\"col\">\n        <input #lastname type=\"text\" class=\"form-control\" id=\"lastname\" placeholder=\"Last Name\" name='lastname' ngModel required pattern=\"^[a-zA-Z\\.]*$\">\n      </div> </div>\n    </div>\n    <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\">Gender:</label>\n        <div class=\"col-sm-10\">\n                <select class=\"form-control\" id=\"gender\" #gender type=\"text\" name='gender' ngModel required>\n                  <option>Male</option>\n                  <option>Female</option>\n                  <option>Other</option>\n                </select>\n                <br>\n          </div>\n        </div>\n  <div class=\"form-group\">\n  <label class=\"control-label col-sm-2\" >IDproof:</label>\n  <div class=\"col-sm-10\">\n    <input type=\"text\" class=\"form-control\"  name=\"idproof\" #idproof placeholder=\"enter government given identity proof (aadhar preferred)\" ngModel required maxlength=\"12\"  >\n  </div>\n</div>\n<div class=\"form-group\">\n    <label class=\"control-label col-sm-2\" >E-Mail</label>\n    <div class=\"col-sm-10\">\n      <input type=\"email\" class=\"form-control\"  name=\"email\" #email placeholder=\"E mail ID\" ngModel required  >\n    </div>\n  </div>\n<div class=\"form-group\">\n<label class=\"control-label col-sm-2\" >Date of Birth:</label>\n<div class=\"col-sm-10\">\n  <input type=\"date\" class=\"form-control\" placeholder=\"Date\" name=\"date\" ngModel #date required >\n</div>\n\n</div>\n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f2.valid\" (click)=\"addForm2(firstname.value,lastname.value,gender.value,idproof.value,date.value,email.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n\n"
+module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Sign up Page</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n\n<div class=\"container\">\n\n  <form  class=\"form\"  #f2=\"ngForm\" >\n      <div class=\"alert alert-success fade show\" role=\"alert\" id=\"success_alert\" *ngIf=\"edited\" >\n          <h4 class=\"alert-heading\">Well done!</h4>\n          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>\n          <hr>\n          <p class=\"mb-0\">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>\n        </div>\n    <div class=\"form-group col-sm-10\">\n\n      <label class=\"control-label col-sm-2\" >Name:</label>\n      <div class=\"form-row\">     \n      <div class=\"col\">\n        <input #firstname type=\"text\" class=\"form-control\" id=\"firstname\" placeholder=\"First Name\" name='firstname' ngModel required pattern=\"^[a-zA-Z\\.]*$\">\n      </div>\n      <div class=\"col\">\n        <input #lastname type=\"text\" class=\"form-control\" id=\"lastname\" placeholder=\"Last Name\" name='lastname' ngModel required pattern=\"^[a-zA-Z\\.]*$\">\n      </div> </div>\n    </div>\n    <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\">Gender:</label>\n        <div class=\"col-sm-10\">\n                <select class=\"form-control\" id=\"gender\" #gender type=\"text\" name='gender' ngModel required>\n                  <option>Male</option>\n                  <option>Female</option>\n                  <option>Other</option>\n                </select>\n                <br>\n          </div>\n        </div>\n  <div class=\"form-group\">\n  <label class=\"control-label col-sm-2\" >IDproof:</label>\n  <div class=\"col-sm-10\">\n    <input type=\"text\" class=\"form-control\"  name=\"idproof\" #idproof placeholder=\"enter government given identity proof (aadhar preferred)\" ngModel required maxlength=\"12\"  >\n  </div>\n</div>\n<div class=\"form-group\">\n    <label class=\"control-label col-sm-2\" >E-Mail</label>\n    <div class=\"col-sm-10\">\n      <input type=\"text\" class=\"form-control\"  name=\"email\" #email placeholder=\"E mail ID\" ngModel required email>\n    </div>\n</div>\n\n<div class=\"form-group\">\n<label class=\"control-label col-sm-2\" >Date of Birth:</label>\n<div class=\"alert alert-danger\" role=\"alert\" id=\"date_validate\" *ngIf=\"visible\">\n  Date of Birth should be valied! Insured should be an Adult.\n</div>\n<div class=\"col-sm-10\">\n  <input type=\"date\" class=\"form-control\" placeholder=\"Date\"  (change)=\"validateDOB(date.value)\" name=\"date\" id=\"date\"  ngModel #date required >\n</div>\n\n</div>\n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f2.valid\" (click)=\"addForm2(firstname.value,lastname.value,gender.value,idproof.value,date.value,email.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n\n"
 
 /***/ }),
 
@@ -819,6 +963,8 @@ var PageComponent = /** @class */ (function () {
         this.clickMessage = "";
         this.servicedata = "";
         this.edited = false;
+        this.visible = false;
+        this.errors = false;
         console.log("Inside page component.ts");
         //date: any = { date: {year: (new Date()).getFullYear(), month: (new Date()).getMonth() + 1, day: (new Date()).getDate()} };
     }
@@ -833,6 +979,17 @@ var PageComponent = /** @class */ (function () {
             console.log(this.edited);
             this.router.navigate(['/about']);
         }.bind(this), 6000);
+    };
+    PageComponent.prototype.validateDOB = function (e) {
+        var year = new Date(e).getFullYear();
+        var today = new Date().getFullYear();
+        if (today - year <= 18) {
+            //Code Something
+            //document.getElementById("date")="";
+            this.frmdate.nativeElement.value = "";
+            this.visible = true;
+            console.log("hello inside val");
+        }
     };
     //async addForm(Gender:string,idproof:string,date:string,Name:string){
     PageComponent.prototype.addForm2 = function (firstname, lastname, Gender, idproof, date, email) {
@@ -863,6 +1020,14 @@ var PageComponent = /** @class */ (function () {
             });
         });
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('date'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PageComponent.prototype, "frmdate", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('date_validate'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], PageComponent.prototype, "validate", void 0);
     PageComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'app-page',
@@ -1258,6 +1423,10 @@ var SawtoothService = /** @class */ (function () {
                 }
             });
         });
+    };
+    SawtoothService.prototype.logdata_list = function () {
+        console.log(this.arr);
+        return this.arr;
     };
     SawtoothService.prototype.getStateD = function (addre) {
         return this.http.get('http://localhost:4200/api/state/' + addre);

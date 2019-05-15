@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , ViewChild} from '@angular/core';
 import { SawtoothService } from '../sawtooth.service';
 import { HttpClient } from '@angular/common/http';
+import {Buffer} from 'buffer/';
 
 @Component({
   selector: 'app-about',
@@ -22,19 +23,108 @@ export class AboutComponent implements OnInit {
   time;
   amt;
   status;
+  errval=false;
   public visible=false;
   public visible2=false;
   cancelled;
-  delayed;
-  deviated;
+  delayed;  
+  public visible_val=false;
+  deviated;state;stateDt;detailsList;
+  today;month;year;endday;
+  day;day2;
+
 
   constructor(private Form:SawtoothService,private httpClient: HttpClient) { 
     console.log("Inside page component.ts")
   }
+
   ngOnInit() {
-   
+    this.today = new Date(),
+    this.day = this.today.getDate(),
+    this.month = this.today.getMonth()+1, //January is 0
+    this.year = this.today.getFullYear();
+    this.day2=this.day+1;
+         if(this.day<10){
+                this.day='0'+this.day
+            } 
+        if(this.month<10){
+            this.month='0'+this.month
+        }
+        if(this.day2<10){
+          this.day2='0'+this.day2
+        }
+
+        this.today = this.year+'-'+this.month+'-'+this.day;
+        this.endday= this.year+'-'+this.month+'-'+this.day2;
+      console.log("Date"+this.today)
+        document.getElementById("dates").setAttribute("min", this.today);
+        document.getElementById("dates").setAttribute("value", this.today);
+        document.getElementById("dates").setAttribute("max",this.endday);
   }
-  
+  @ViewChild('userid') idusr;
+
+
+public getvalid(add){
+  this.getData(add);
+}
+  getData(addr){
+    this.errval=false;
+    return this.Form.getStateD(addr)
+      .subscribe((resp)=>{
+        const dataString= JSON.stringify(resp)
+        const data= JSON.parse(dataString)
+        let stateDataEnc=data.data;
+        let stateDecoded= atob(stateDataEnc)
+        this.state=JSON.parse(stateDecoded)
+        
+        console.log("bkp 0")
+        
+        console.log("bkp 1")
+        return this.Form.getTxnD(this.state.Txnid)
+        .subscribe((response) => {
+          
+          const dt1=JSON.stringify(response)
+          const dt2=JSON.parse(dt1)
+          let dt3=dt2.data
+          let dt4=dt3.payload
+          this.stateDt=new Buffer(dt4,"base64").toString()
+          let Details=this.stateDt.split(',')
+
+          this.detailsList={
+            from:Details[0],
+            to:Details[1],
+            amt:Details[2],
+            name:Details[3],
+            number:Details[4],
+            status:Details[5],
+            proc:Details[6],
+            action:Details[7],
+            addr:addr
+          }
+          if(Details[7]=="add_data"){
+              console.log("exist")
+              this.errval=true;
+        }else{
+          this.visible_val=true
+          this.idusr.nativeElement.value="";
+        }
+
+          
+        })
+       
+        
+      },
+      (error)=>{
+        console.log(error)
+        this.visible_val=true
+        this.idusr.nativeElement.value="";
+
+      })
+  }
+
+//}
+
+
   public get_products(from:string,to:string){
 
     //this.httpClient.get(this.baseUrl + '/flights?iataNumber='+this.id).subscribe((res)=>{

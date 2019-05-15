@@ -392,7 +392,10 @@ public async matchadr(recpaddr,action,familyName){
 
 }
 
-
+public logdata_list(){
+  console.log(this.arr);
+  return this.arr;
+}
 
   
   getStateD(addre){

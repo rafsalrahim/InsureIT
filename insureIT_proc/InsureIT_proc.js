@@ -90,10 +90,10 @@ class InsureITHandler extends TransactionHandler {
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-               user: 'certificateissuer@gmail.com',
-               pass: 'blockcert'
-           }
-       });
+              user: 'certificateissuer@gmail.com',
+              pass: 'blockcert'
+          }
+      });
       
       const mailOptions = {
         from: 'certificateissuer@gmail.com', // sender address
