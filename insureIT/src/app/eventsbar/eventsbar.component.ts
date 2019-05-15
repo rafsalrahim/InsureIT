@@ -30,21 +30,12 @@ export class EventsbarComponent implements OnInit {
     
     const nhs="NHS"
     setInterval(()=> { this.getList_rep() }, 60000);
-    this.getList();
+    //this.getList();
    
   }
 
   ngOnInit() {
   }
-  /*
-  public get_reward(){
-    console.log("hello");
-    this.visible2=true;
-    
-    this.Table2=this.detailsList;
-}*/
-
-
 
   getList(){
     //if(){
@@ -63,10 +54,6 @@ export class EventsbarComponent implements OnInit {
         }
 
     })
-  /*}
-  else{
-    this.getData(s)
-  }*/
     }
 
 
@@ -150,7 +137,74 @@ export class EventsbarComponent implements OnInit {
       })
   }
 
+  getData_claim(addr){
+    
+    return this.Form.getStateD(addr)
+      .subscribe((resp)=>{
+        const dataString= JSON.stringify(resp)
+        const data= JSON.parse(dataString)
+        let stateDataEnc=data.data;
+        let stateDecoded= atob(stateDataEnc)
+        this.state=JSON.parse(stateDecoded)
+        
+        console.log("bkp 0")
+        
+        console.log("bkp 1")
+        return this.Form.getTxnD(this.state.Txnid)
+        .subscribe((response) => {
+          
+          const dt1=JSON.stringify(response)
+          const dt2=JSON.parse(dt1)
+          let dt3=dt2.data
+          let dt4=dt3.payload
+          this.stateDt=new Buffer(dt4,"base64").toString()
+          let Details=this.stateDt.split(',')
 
+          this.detailsList={
+            from:Details[0],
+            to:Details[1],
+            amt:Details[2],
+            name:Details[3],
+            number:Details[4],
+            status:Details[5],
+            proc:Details[6],
+            action:Details[7],
+            addr:addr
+            //status:this.state.Status,
+            //txnid:this.state.Txnid
+          }
+          if(Details[7]=="pol_claimed"){
+          this.visible2=true;
+          this.recp.push(this.detailsList)
+        
+        }
+    //this.Table2=this.detailsList;
+
+          /*if(addr.substr(0,22)==this.Form.hash("insureIT").substr(0,6)+this.Form.hash("resp").substr(0,16)){
+            console.log(addr,"KJADIHEGFFFFGWwhfgwHU")
+            this.recp.push(this.detailsList)
+          }
+          else if(addr.substr(0,22)==this.Form.hash("hygieia").substr(0,6)+this.Form.hash("NHS").substr(0,16)){
+            console.log(addr,"ewfg")
+            this.donr.push(this.detailsList)
+          }
+         else{
+           console.log("Error in detail List")
+         }*/
+         console.log(this.detailsList);
+          console.log("Name is "+this.stateDt)
+
+          console.log("batchlist null",this.stateDt);
+          
+        })
+       
+        
+      },
+      (error)=>{
+        console.log(error)
+
+      })
+  }
 
 
 
@@ -179,12 +233,7 @@ export class EventsbarComponent implements OnInit {
         }
 
     })
-  /*}
-  else{
-    this.getData(s)
-  }*/
 
-  //console.log("inside repeat call ");
     }
 
   getData_repet(addr){
@@ -237,7 +286,7 @@ export class EventsbarComponent implements OnInit {
                 this.amt=Details[2]*5;
                 this.newstatus="Done";
                 const proc ="NHS"
-                const action ="add"
+                const action ="pol_claimed"
                 const FAMILYNAME = 'insureIT'
                 ///const servDt = this.Form.sendData(Details[0],Details[1],this.amt,Details[3],Details[4],this.newstatus,proc,action,FAMILYNAME);
                 ///this.servicedata="htis is service dAatta"+servDt;

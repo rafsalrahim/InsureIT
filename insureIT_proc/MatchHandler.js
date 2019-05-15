@@ -129,7 +129,6 @@ class MatchHandler extends TransactionHandler {
         }
         //addrLst2=pl.recpaddr;
           let addrlstrm1= this.removeAddress(pl.recpaddr,addrLst);
-          
           console.log('addrlst--->', addrlstrm1);
          
 

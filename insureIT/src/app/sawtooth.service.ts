@@ -29,6 +29,8 @@ export class SawtoothService {
   public addrm:any
   public addrArray:any;
   public addrgen:any;
+  public arr: string[] = [];
+  public leng:any;
   
     //,private  dialog:  MatDialog
   constructor(private http:HttpClient) {
@@ -355,6 +357,8 @@ public async matchadr(recpaddr,action,familyName){
     this.publicKey=this.signer.getPublicKey().asHex();    
     // Encode the payload
     /*const payload = this.getEncodedData(action, values);*/    
+    this.leng=this.arr.length;
+    this.arr[this.leng+1]=recpaddr;
     const data = recpaddr +","+action;
     console.log(data+"data");
     const encData=new TextEncoder('utf8').encode(data);
