@@ -3,3 +3,5 @@
 @import "~font-awesome/css/font-awesome.css";
 
 body {  padding: 5px; font-family: helvetica; font:15px;   }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

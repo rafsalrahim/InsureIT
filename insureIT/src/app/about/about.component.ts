@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SawtoothService } from '../sawtooth.service';
 import { HttpClient } from '@angular/common/http';
+
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
@@ -20,6 +21,7 @@ export class AboutComponent implements OnInit {
   number;
   time;
   amt;
+  status;
   public visible=false;
   public visible2=false;
   cancelled;
@@ -48,7 +50,8 @@ export class AboutComponent implements OnInit {
       //var index = i[2];
       this.number=i.number;
       this.time=i.time;
-      console.log(this.number);
+      this.status=i.status;
+      console.log(this.status);
       this.visible=false;
       
     }
@@ -63,17 +66,14 @@ export class AboutComponent implements OnInit {
           this.Table2=[{"ab":this.cancelled,"ac":this.delayed,"ad":this.deviated}];
   }
 
-  async addInsurance(Gender:string,from:string,to:string,amt:string,date:string,Name:string){
+  async addInsurance(from:string,to:string,amt:string,date:string,Name:string){
    // event.preventDefault();
- 
+    console.log(amt)
    //this.clickMessage="Gender: "+Gender + " Registration Date:"+date + " Name:" +Name ;
-   const proc ="NHS"
-   const action ="add"
-   const FAMILYNAME = 'insureIT'
-
-
-    const servDt =await this.Form.sendData(from,to,amt,Name,this.number,proc,action,FAMILYNAME);
-    
+    const proc ="NHS"
+    const action ="add"
+    const FAMILYNAME = 'insureIT'
+    const servDt =await this.Form.sendData(from,to,amt,Name,this.number,this.status,proc,action,FAMILYNAME);
     this.servicedata="htis is service dAatta"+servDt;
     //+servDt.toString();
     

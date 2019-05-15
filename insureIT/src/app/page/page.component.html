@@ -6,62 +6,60 @@
 <!-- <div>
   <button type="submit" class="btn btn-primary"  (click)="getDnr()">Submit</button>
 </div> -->
+
 <div class="container">
 
-  <form  class="form"  #f="ngForm" >
-    <div class="form-group">
+  <form  class="form"  #f2="ngForm" >
+      <div class="alert alert-success fade show" role="alert" id="success_alert" *ngIf="edited" >
+          <h4 class="alert-heading">Well done!</h4>
+          <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+          <hr>
+          <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        </div>
+    <div class="form-group col-sm-10">
 
-      <label class="control-label col-sm-2" id="name">Name:</label>
-      <div class="col-sm-10">
-        <input #Name type="text" class="form-control" id="name" placeholder="name" name='Name' ngModel required pattern="^[a-zA-Z\.]*$">
+      <label class="control-label col-sm-2" >Name:</label>
+      <div class="form-row">     
+      <div class="col">
+        <input #firstname type="text" class="form-control" id="firstname" placeholder="First Name" name='firstname' ngModel required pattern="^[a-zA-Z\.]*$">
       </div>
+      <div class="col">
+        <input #lastname type="text" class="form-control" id="lastname" placeholder="Last Name" name='lastname' ngModel required pattern="^[a-zA-Z\.]*$">
+      </div> </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" id="Date">Date of Birth:</label>
-      <div class="col-sm-10">
-        <input #date type="date" class="form-control" id="date" placeholder="Date" name='date' ngModel required>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <label class="control-label col-sm-2" id="Gender">Gender:</label>
-      <div class="col-sm-10">
-              <select class="form-control" id="Gender" #Gender type="text" name='Gender' ngModel required>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-              <br>
-        </div>
-      </div>
-    
-  
-
-      <div class="form-group">
-        <label class="control-label col-sm-2" id="idproof">Enter Identity No:</label>
+        <label class="control-label col-sm-2">Gender:</label>
         <div class="col-sm-10">
-          <input #idproof type="text" ngModel required class="form-control" id="idproof" placeholder="enter government given identity proof (aadhar preferred)" ngModel required maxlength="12" >
-   <small class="form-text text-muted">Enter 12 digit Aadhar number</small>
+                <select class="form-control" id="gender" #gender type="text" name='gender' ngModel required>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+                <br>
+          </div>
         </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" id="cno">Enter Contact No:</label>
-        <div class="col-sm-10">
-          <input type="text" class="form-control" id="cno" placeholder="Contact Number" name="tel" ngModel required maxlength="10" >
-  <small class="form-text text-muted">Enter 10 digit Phone number</small>      
+  <div class="form-group">
+  <label class="control-label col-sm-2" >IDproof:</label>
+  <div class="col-sm-10">
+    <input type="text" class="form-control"  name="idproof" #idproof placeholder="enter government given identity proof (aadhar preferred)" ngModel required maxlength="12"  >
   </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label col-sm-2" id="cid">Contact Info:</label>
-        <div class="col-sm-10">
-          <input type="textarea" class="form-control" id="cid" placeholder="enter Contact information" name="cid" ngModel required>
-        </div>
-      </div>
-      
-      
+</div>
+<div class="form-group">
+    <label class="control-label col-sm-2" >E-Mail</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control"  name="email" #email placeholder="E mail ID" ngModel required  >
+    </div>
+  </div>
+<div class="form-group">
+<label class="control-label col-sm-2" >Date of Birth:</label>
+<div class="col-sm-10">
+  <input type="date" class="form-control" placeholder="Date" name="date" ngModel #date required >
+</div>
+
+</div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="addForm(Gender.value,idproof.value,date.value,Name.value)">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!f2.valid" (click)="addForm2(firstname.value,lastname.value,gender.value,idproof.value,date.value,email.value)">Submit</button>
         </div>
       </div>
     </form>

@@ -13,11 +13,32 @@
       <div class="col-md-12">
         <div class="input-group">
           <span class="input-group-prepend">
-            <button type="submit" class="btn btn-primary" (click)="getList()"><i class="fa fa-search"></i> Search</button>
+            <button type="submit" class="btn btn-primary" (click)="getData(search.value)"><i class="fa fa-search"></i> Search</button>
           </span>
-          <input type="text" id="policyid" name="policyid" class="form-control" placeholder="Policy ID" ngModel required>
+          <input #search type="text" id="policyid" name="policyid" class="form-control" placeholder="Policy ID" ngModel required>
         </div>
       </div>
+      <table class="table" name="data_table" id="data_table" *ngIf="visible2">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Number</th>
+                <th>Status</th>
+        </thead>
+    
+        <tr *ngFor="let data of recp;let i = index" >
+    
+            <td>
+                <span>{{data.name}}</span>
+            </td>
+            <td>
+                <span>{{data.number}}</span>
+            </td>
+            <td>
+                <span>{{data.status}}</span>
+            </td>
+        </tr>
+    </table>
     </div>
 
     </form>

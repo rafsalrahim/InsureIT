@@ -25,7 +25,7 @@ const { TransactionProcessor } = require('sawtooth-sdk/processor')
 
 const InsureITHandler= require('./InsureIT_proc')
 const InsureITData=require('./insureIT_dataHandler')
-
+const MatchHandler = require('./MatchHandler')
 
 if (process.argv.length < 3) {
   console.log('missing a validator address')
@@ -38,6 +38,7 @@ const transactionProcessor = new TransactionProcessor(address)
 
 transactionProcessor.addHandler(new InsureITHandler())
 transactionProcessor.addHandler(new InsureITData())
+transactionProcessor.addHandler(new MatchHandler())
 
 
  /*addHandler adds the given handler to the transaction processor so

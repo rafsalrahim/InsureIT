@@ -11,6 +11,7 @@ import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
 import { EventsbarComponent } from './eventsbar/eventsbar.component';
 import { HttpClientModule } from '@angular/common/http';
+//something
 
 
 
@@ -21,14 +22,17 @@ import { HttpClientModule } from '@angular/common/http';
     NavComponent,
     AboutComponent,
     MainComponent,
-    EventsbarComponent
+    EventsbarComponent,
+
   
   ],
   imports: [
     HttpClientModule,
     FormsModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    //something
+
   ],
   providers: [],
   bootstrap: [AppComponent]

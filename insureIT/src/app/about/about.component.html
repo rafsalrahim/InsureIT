@@ -11,37 +11,23 @@
   <form  class="form"  #f="ngForm" >
     <div class="form-group">
 
-      <label class="control-label col-sm-2" id="name">Name:</label>
+      <label class="control-label col-sm-2" id="name">Customer unique ID</label>
       <div class="col-sm-10">
-        <input #Name type="text" class="form-control" id="name" placeholder="name" name='Name' ngModel required pattern="^[a-zA-Z\.]*$">
+        <input #userid type="text" class="form-control" id="userid" placeholder="Unique ID" name='userid' ngModel required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" id="Date">Date of Birth:</label>
+      <label class="control-label col-sm-2" id="Date">Date of departure:</label>
       <div class="col-sm-10">
         <input #date type="date" class="form-control" id="date" placeholder="Date" name='date' ngModel required>
       </div>
     </div>
     
-    <div class="form-group">
-      <label class="control-label col-sm-2" id="Gender">Gender:</label>
-      <div class="col-sm-10">
-              <select class="form-control" id="Gender" #Gender type="text" name='Gender' ngModel required>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Other</option>
-              </select>
-              <br>
-        </div>
-      </div>
-    
-  
-
       <div class="form-group">
-        <label class="control-label col-sm-2" id="idproof">From</label>
+        <label class="control-label col-sm-2" >From</label>
         <div class="col-sm-10">
-          <input #from type="text" ngModel required class="form-control" id="from" placeholder="from" >
-   <small class="form-text text-muted"></small>
+          <input #from type="text" ngModel required class="form-control" id="from" placeholder="from" name="from" >
+    <small class="form-text text-muted"></small>
         </div>
       </div>
       <div class="form-group">
@@ -51,13 +37,13 @@
   <small class="form-text text-muted"></small>      
   </div>
       </div>
-      <table class="table" name="test_table" id="test_table" *ngIf="visible">
+      <table class="table col-sm-10" name="test_table" id="test_table" *ngIf="visible">
         <thead>
             <tr>
                 <th>From</th>
                 <th>To</th>
                 <th>Flight Number</th>
-                <th>Date</th>
+                <th>Time</th>
         </thead>
     
         <tr *ngFor="let data of Table;let i = index" (click)=selectflight(Table[i])>
@@ -77,14 +63,24 @@
         </tr>
     </table>
       <div class="form-group">
-        <label class="control-label col-sm-2" id="cid">Amount</label>
+        <label class="control-label col-sm-2" >Amount</label>
         <div class="col-sm-10">
-          <input #amt type="textarea" class="form-control" id="cid" placeholder="enter Insurance amount" name="cid" (change)= "get_reward(amt.value)" ngModel required>
+          <!-- <input #amt type="textarea" class="form-control" id="cid" placeholder="enter Insurance amount" name="cid" (change)= "get_reward(amt.value)" ngModel required> -->
+          <select class="form-control" id="policyamt" #policyamt type="text" name='policyamt'  (change)= "get_reward(policyamt.value)" ngModel required>
+              <option>45</option>
+              <option>100</option>
+              <option>200</option>
+              <option>400</option>
+            </select>
+            <br>
+        
         </div>
       </div>
       
-      <table class="table" name="rate_table" id="rate_table" *ngIf="visible2">
+       <table class="table col-sm-10" name="rate_table" id="rate_table" *ngIf="visible2">
+         
         <thead>
+          <tr><th colspan="3"><p>Payouts for premium Selected: </p></th></tr>
             <tr>
                 <th>Delayed</th>
                 <th>Deviated</th>
@@ -103,10 +99,10 @@
                 <span>{{data.ab}}</span>
             </td>
         </tr>
-    </table>
+    </table> 
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-          <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="addInsurance(Gender.value,from.value,to.value,amt.value,date.value,Name.value)">Submit</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid" (click)="addInsurance(from.value,to.value,policyamt.value,date.value,userid.value)">Submit</button>
         </div>
       </div>
     </form>

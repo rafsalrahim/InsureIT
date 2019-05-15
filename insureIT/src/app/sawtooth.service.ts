@@ -7,6 +7,8 @@ import { HttpClient } from '@angular/common/http';
 import {Buffer} from 'buffer/';
 import { TextEncoder, TextDecoder} from "text-encoding/lib/encoding";
 import { pipe } from '@angular/core/src/render3';
+import { MatDialog, MatDialogRef } from  '@angular/material';
+
 
 
 
@@ -25,10 +27,10 @@ export class SawtoothService {
   public signer:any;
   public addrNs:any;
   public addrm:any
- public addrArray:any;
- public  addrgen:any;
+  public addrArray:any;
+  public addrgen:any;
   
-    
+    //,private  dialog:  MatDialog
   constructor(private http:HttpClient) {
     this.address =  this.hash("insureIT").substr(0, 70) ;
     this.addrNs=this.hash("insureIT").substr(0,6)
@@ -196,7 +198,7 @@ private getDecodedData(responseJSON): string {
 
 
 
-  public async sendData(from,to,amt,Name,number,proc,action,familyName) {
+  public async sendData(from,to,amt,Name,number,status,proc,action,familyName) {
 
     this.Family_name = familyName;
     
@@ -210,7 +212,7 @@ private getDecodedData(responseJSON): string {
     this.publicKey=this.signer.getPublicKey().asHex();    
     // Encode the payload
     /*const payload = this.getEncodedData(action, values);*/    
-    const data = from+ "," + to+ ","+ amt +","+ Name +","+number+","+proc+ ","+ action;
+    const data = from+ "," + to+ ","+ amt +","+ Name +","+number+","+status+","+proc+ ","+ action;
     console.log(data+"data");
     const encData=new TextEncoder('utf8').encode(data);
     console.log("ThisAddress"+this.address)
@@ -244,8 +246,8 @@ private getDecodedData(responseJSON): string {
   
   }
 
-  /*
-  public async sendData(gender,idproof,date,name,proc,action,familyName) {
+  
+  public async sendData2(gender,idproof,date,fname,lname,some,proc,action,familyName) {
 
     this.Family_name = familyName;
     
@@ -257,8 +259,8 @@ private getDecodedData(responseJSON): string {
     this.signer = new CryptoFactory(context).newSigner(privateKey);
     this.publicKey=this.signer.getPublicKey().asHex();    
     // Encode the payload
-    /*const payload = this.getEncodedData(action, values);    
-    const data = gender+ "," + idproof+ ","+ date +","+ name +"," +proc+ ","+ action;
+    //const payload = this.getEncodedData(action, values);    
+    const data = idproof+ "," + gender+ ","+ date +","+ fname +","+lname+","+some+"," +proc+ ","+ action;
     console.log(data+"data");
     const encData=new TextEncoder('utf8').encode(data);
     console.log("ThisAddress"+this.address)
@@ -291,7 +293,7 @@ private getDecodedData(responseJSON): string {
   
   
   }
-*/
+
 
   public async insure(from,to,amt,Name,proc,action,familyName){
     this.Family_name = familyName;
@@ -336,18 +338,69 @@ private getDecodedData(responseJSON): string {
       return "ERROR";
   }
   
-  
   }
-  
 
+//automatic claming
+
+public async matchadr(recpaddr,action,familyName){
+  console.log("sawtooth service"+ recpaddr+action)
+
+  this.Family_name = familyName;
+  try{
+
+    const context = createContext('secp256k1');
+    // Creating a random private key 
+    const privateKey = context.newRandomPrivateKey();
+    this.signer = new CryptoFactory(context).newSigner(privateKey);
+    this.publicKey=this.signer.getPublicKey().asHex();    
+    // Encode the payload
+    /*const payload = this.getEncodedData(action, values);*/    
+    const data = recpaddr +","+action;
+    console.log(data+"data");
+    const encData=new TextEncoder('utf8').encode(data);
+    console.log("ThisAddress"+this.addrm)
+    const transactionHeader = this.getTransactionHeaderBytes([this.addrNs], [this.addrm], encData);
+    console.log("After txn header")
+    // Create transaction
+    const transaction = this.getTransaction(transactionHeader, encData);
+    console.log("After transaction")
+    // Transaction list
+    const transactionsList = [transaction];
+    console.log("After transactionsList")
+   // Create a list of batches. In our case, one batch only in the list
+   const batchList = this.getBatchList(transactionsList);
+   console.log("After batchList")
+
+   // Send the batch to REST API
+    await this.sendToRestAPI(batchList)
+   .then((resp) => {
+     console.log("sendToRestAPI response", resp);
+   })
+   .catch((error) => {
+     console.log("error here", error);
+   })
+    return batchList;
+  }
+    catch (e) {
+      console.log("Error in reading the key details", e);
+      return "ERROR";
+  }
+
+}
+
+
+
+  
   getStateD(addre){
     return this.http.get('http://localhost:4200/api/state/'+addre)
-
   }
-
   getTxnD(txnid){
     return this.http.get('http://localhost:4200/api/transactions/'+txnid)
   }
+
+
+
+
 
 
 
