@@ -72,7 +72,7 @@ module.exports = "body {  padding: 5px; font-family: helvetica; font:15px;   }\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Policy Registration</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group\">\n\n      <label class=\"control-label col-sm-2\" id=\"name\">Customer unique ID</label>\n      <div class=\"col-sm-10\">\n        <input #userid type=\"text\" class=\"form-control\" id=\"userid\" placeholder=\"Unique ID\" (change)= \"getvalid(userid.value)\" name='userid' ngModel required>\n      </div>\n      <div class=\"alert alert-danger\" role=\"alert\" id=\"date_validate\" *ngIf=\"visible_val\">\n        Enterv Valied User ID. #Check your Mail#\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Date\">Date of departure:</label>\n      <div class=\"col-sm-10\">\n        <input #date type=\"date\" class=\"form-control\" id=\"date\"  placeholder=\"Date\" name='date' ngModel required>\n      </div>\n    </div>\n    \n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >From</label>\n        <div class=\"col-sm-10\">\n          <input #from type=\"text\" ngModel required class=\"form-control\" id=\"from\" placeholder=\"from\" name=\"from\" >\n    <small class=\"form-text text-muted\"></small>\n        </div>\n\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cno\">To</label>\n        <div class=\"col-sm-10\">\n          <input #to type=\"text\" class=\"form-control\" id=\"to\" placeholder=\"to\" name=\"to\" (change)= \"get_products(from.value,to.value)\" ngModel required  >\n  <small class=\"form-text text-muted\"></small>      \n  </div>\n      </div>\n      <table class=\"table col-sm-10\" name=\"test_table\" id=\"test_table\" *ngIf=\"visible\">\n        <thead>\n            <tr>\n                <th>From</th>\n                <th>To</th>\n                <th>Flight Number</th>\n                <th>Time</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table;let i = index\" (click)=selectflight(Table[i])>\n    \n            <td>\n                <span>{{data.from}}</span>\n            </td>\n            <td>\n                <span>{{data.to}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n              <span>{{data.time}}</span>\n            </td>\n        </tr>\n    </table>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >Amount</label>\n        <div class=\"col-sm-10\">\n          <!-- <input #amt type=\"textarea\" class=\"form-control\" id=\"cid\" placeholder=\"enter Insurance amount\" name=\"cid\" (change)= \"get_reward(amt.value)\" ngModel required> -->\n          <select class=\"form-control\" id=\"policyamt\" #policyamt type=\"text\" name='policyamt'  (change)= \"get_reward(policyamt.value)\" ngModel required>\n              <option>45</option>\n              <option>100</option>\n              <option>200</option>\n              <option>400</option>\n            </select>\n            <br>\n        \n        </div>\n      </div>\n      \n       <table class=\"table col-sm-10\" name=\"rate_table\" id=\"rate_table\" *ngIf=\"visible2\">\n         \n        <thead>\n          <tr><th colspan=\"3\"><p>Payouts for premium Selected: </p></th></tr>\n            <tr>\n                <th>Delayed</th>\n                <th>Deviated</th>\n                <th>Cancelled</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table2;let i = index\" >\n    \n            <td>\n                <span>{{data.ac}}</span>\n            </td>\n            <td>\n                <span>{{data.ad}}</span>\n            </td>\n            <td>\n                <span>{{data.ab}}</span>\n            </td>\n        </tr>\n    </table> \n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f.valid\" (click)=\"addInsurance(from.value,to.value,policyamt.value,date.value,userid.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n"
+module.exports = "<!-- <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\n<script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\"></script>\n<link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\"> -->\n<br/>\n<br/><legend><p class=\"p1\">Policy Registration</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group\">\n\n      <label class=\"control-label col-sm-2\" id=\"name\">Customer unique ID</label>\n      <div class=\"col-sm-10\">\n        <input #userid type=\"text\" class=\"form-control\" id=\"userid\" placeholder=\"Unique ID\" (change)= \"getvalid(userid.value)\" name='userid' ngModel required>\n      </div>\n      <div class=\"alert alert-danger\" role=\"alert\" id=\"date_validate\" *ngIf=\"visible_val\">\n        Enterv Valied User ID. #Check your Mail#\n      </div>\n    </div>\n    <div class=\"form-group\">\n      <label class=\"control-label col-sm-2\" id=\"Date\">Date of departure:</label>\n      <div class=\"col-sm-10\">\n        <input #date type=\"date\" class=\"form-control\" id=\"dates\"  placeholder=\"Date\" name='date' ngModel required>\n      </div>\n    </div>\n    \n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >From</label>\n        <div class=\"col-sm-10\">\n          <input #from type=\"text\" ngModel required class=\"form-control\" id=\"from\" placeholder=\"from\" name=\"from\" >\n    <small class=\"form-text text-muted\"></small>\n        </div>\n\n      </div>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" id=\"cno\">To</label>\n        <div class=\"col-sm-10\">\n          <input #to type=\"text\" class=\"form-control\" id=\"to\" placeholder=\"to\" name=\"to\" (change)= \"get_products(from.value,to.value)\" ngModel required  >\n  <small class=\"form-text text-muted\"></small>      \n  </div>\n      </div>\n      <table class=\"table col-sm-10\" name=\"test_table\" id=\"test_table\" *ngIf=\"visible\">\n        <thead>\n            <tr>\n                <th>From</th>\n                <th>To</th>\n                <th>Flight Number</th>\n                <th>Time</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table;let i = index\" (click)=selectflight(Table[i])>\n    \n            <td>\n                <span>{{data.from}}</span>\n            </td>\n            <td>\n                <span>{{data.to}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n              <span>{{data.time}}</span>\n            </td>\n        </tr>\n    </table>\n      <div class=\"form-group\">\n        <label class=\"control-label col-sm-2\" >Amount</label>\n        <div class=\"col-sm-10\">\n          <!-- <input #amt type=\"textarea\" class=\"form-control\" id=\"cid\" placeholder=\"enter Insurance amount\" name=\"cid\" (change)= \"get_reward(amt.value)\" ngModel required> -->\n          <select class=\"form-control\" id=\"policyamt\" #policyamt type=\"text\" name='policyamt'  (change)= \"get_reward(policyamt.value)\" ngModel required>\n              <option>45</option>\n              <option>100</option>\n              <option>200</option>\n              <option>400</option>\n            </select>\n            <br>\n        \n        </div>\n      </div>\n      \n       <table class=\"table col-sm-10\" name=\"rate_table\" id=\"rate_table\" *ngIf=\"visible2\">\n         \n        <thead>\n          <tr><th colspan=\"3\"><p>Payouts for premium Selected: </p></th></tr>\n            <tr>\n                <th>Delayed</th>\n                <th>Deviated</th>\n                <th>Cancelled</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of Table2;let i = index\" >\n    \n            <td>\n                <span>{{data.ac}}</span>\n            </td>\n            <td>\n                <span>{{data.ad}}</span>\n            </td>\n            <td>\n                <span>{{data.ab}}</span>\n            </td>\n        </tr>\n    </table> \n      <div class=\"form-group\">\n        <div class=\"col-sm-offset-2 col-sm-10\">\n          <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"!f.valid\" (click)=\"addInsurance(from.value,to.value,policyamt.value,date.value,userid.value)\">Submit</button>\n        </div>\n      </div>\n    </form>\n  </div>\n"
 
 /***/ }),
 
@@ -113,20 +113,28 @@ var AboutComponent = /** @class */ (function () {
         this.visible2 = false;
         this.visible_val = false;
         console.log("Inside page component.ts");
+    }
+    AboutComponent.prototype.ngOnInit = function () {
         this.today = new Date(),
             this.day = this.today.getDate(),
             this.month = this.today.getMonth() + 1, //January is 0
             this.year = this.today.getFullYear();
+        this.day2 = this.day + 1;
         if (this.day < 10) {
             this.day = '0' + this.day;
         }
         if (this.month < 10) {
             this.month = '0' + this.month;
         }
+        if (this.day2 < 10) {
+            this.day2 = '0' + this.day2;
+        }
         this.today = this.year + '-' + this.month + '-' + this.day;
-        document.getElementById("date").setAttribute("min", this.today);
-    }
-    AboutComponent.prototype.ngOnInit = function () {
+        this.endday = this.year + '-' + this.month + '-' + this.day2;
+        console.log("Date" + this.today);
+        document.getElementById("dates").setAttribute("min", this.today);
+        document.getElementById("dates").setAttribute("value", this.today);
+        document.getElementById("dates").setAttribute("max", this.endday);
     };
     AboutComponent.prototype.getvalid = function (add) {
         this.getData(add);
@@ -475,9 +483,9 @@ var EventsbarComponent = /** @class */ (function () {
         this.visible2 = false;
         var nhs = "NHS";
         setInterval(function () { _this.getList_rep(); }, 60000);
-        this.getList();
     }
     EventsbarComponent.prototype.ngOnInit = function () {
+        this.getList();
     };
     EventsbarComponent.prototype.getList = function () {
         var _this = this;
@@ -681,8 +689,8 @@ var EventsbarComponent = /** @class */ (function () {
                         var proc = "NHS";
                         var action = "pol_claimed";
                         var FAMILYNAME = 'insureIT';
-                        ///const servDt = this.Form.sendData(Details[0],Details[1],this.amt,Details[3],Details[4],this.newstatus,proc,action,FAMILYNAME);
-                        ///this.servicedata="htis is service dAatta"+servDt;
+                        var servDt = _this.Form.sendData(Details[0], Details[1], _this.amt, Details[3], Details[4], _this.newstatus, proc, action, FAMILYNAME);
+                        _this.servicedata = "htis is service dAatta" + servDt;
                         //this.visible2=true;
                         _this.recp.push(_this.detailsList);
                         //this.Table2=this.detailsList;
@@ -750,7 +758,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"logdat()\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input #search type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n      <table class=\"table\" name=\"data_table\" id=\"data_table\" *ngIf=\"visible2\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Number</th>\n                <th>Status</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of recp;let i = index\" >\n    \n            <td>\n                <span>{{data.name}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n                <span>{{data.status}}</span>\n            </td>\n        </tr>\n    </table>\n    </div>\n\n    </form>\n  </div>\n\n\n\n"
+module.exports = "<br/>\n<br/><legend><p class=\"p1\">Track Policy</p></legend><br/>\n<!-- <div>\n  <button type=\"submit\" class=\"btn btn-primary\"  (click)=\"getDnr()\">Submit</button>\n</div> -->\n<div class=\"container\">\n\n  <form  class=\"form\"  #f=\"ngForm\" >\n    <div class=\"form-group row\">\n      <div class=\"col-md-12\">\n        <div class=\"input-group\">\n          <span class=\"input-group-prepend\">\n            <button type=\"submit\" class=\"btn btn-primary\" (click)=\"getList()\"><i class=\"fa fa-search\"></i> Search</button>\n          </span>\n          <input #search type=\"text\" id=\"policyid\" name=\"policyid\" class=\"form-control\" placeholder=\"Policy ID\" ngModel required>\n        </div>\n      </div>\n      <table class=\"table\" name=\"data_table\" id=\"data_table\" *ngIf=\"visible2\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Number</th>\n                <th>Status</th>\n        </thead>\n    \n        <tr *ngFor=\"let data of recp;let i = index\" >\n    \n            <td>\n                <span>{{data.addr}}</span>\n            </td>\n            <td>\n                <span>{{data.number}}</span>\n            </td>\n            <td>\n                <span>{{data.status}}</span>\n            </td>\n        </tr>\n    </table>\n    </div>\n\n    </form>\n  </div>\n\n\n\n"
 
 /***/ }),
 
@@ -767,6 +775,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _sawtooth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sawtooth.service */ "./src/app/sawtooth.service.ts");
+/* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! buffer/ */ "./node_modules/buffer/index.js");
+/* harmony import */ var buffer___WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(buffer___WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
@@ -775,14 +786,75 @@ var LogComponent = /** @class */ (function () {
         this.Form = Form;
         this.visible2 = false;
         this.recp = [];
-        this.logdat();
+        this.getList();
     }
     LogComponent.prototype.ngOnInit = function () {
+        this.getList();
     };
-    LogComponent.prototype.logdat = function () {
-        this.visible2 = true;
-        this.detailsList = this.Form.logdata_list();
-        this.recp.push(this.detailsList);
+    LogComponent.prototype.getList = function () {
+        var _this = this;
+        //if(){
+        return this.Form.getStateD(this.Form.address)
+            .subscribe(function (resp) {
+            var dataString = JSON.stringify(resp);
+            var data = JSON.parse(dataString);
+            var stateDataEnc = data.data;
+            var stateDecoded = atob(stateDataEnc);
+            _this.state = JSON.parse(stateDecoded);
+            _this.addrArray = _this.state.address;
+            for (var i in _this.addrArray) {
+                _this.getData(_this.addrArray[i]);
+            }
+        });
+    };
+    LogComponent.prototype.getDecodedData = function (responseJSON) {
+        var dataBytes = responseJSON.data;
+        var decodedData = new buffer___WEBPACK_IMPORTED_MODULE_3__["Buffer"](dataBytes, 'base64').toString();
+        return decodedData;
+    };
+    LogComponent.prototype.getData = function (addr) {
+        var _this = this;
+        return this.Form.getStateD(addr)
+            .subscribe(function (resp) {
+            var dataString = JSON.stringify(resp);
+            var data = JSON.parse(dataString);
+            var stateDataEnc = data.data;
+            var stateDecoded = atob(stateDataEnc);
+            _this.state = JSON.parse(stateDecoded);
+            console.log("bkp 0");
+            console.log("bkp 1");
+            return _this.Form.getTxnD(_this.state.Txnid)
+                .subscribe(function (response) {
+                var dt1 = JSON.stringify(response);
+                var dt2 = JSON.parse(dt1);
+                var dt3 = dt2.data;
+                var dt4 = dt3.payload;
+                _this.stateDt = new buffer___WEBPACK_IMPORTED_MODULE_3__["Buffer"](dt4, "base64").toString();
+                var Details = _this.stateDt.split(',');
+                _this.detailsList = {
+                    from: Details[0],
+                    to: Details[1],
+                    amt: Details[2],
+                    name: Details[3],
+                    number: Details[4],
+                    status: Details[5],
+                    proc: Details[6],
+                    action: Details[7],
+                    addr: addr
+                    //status:this.state.Status,
+                    //txnid:this.state.Txnid
+                };
+                if (Details[7] == "add_data") {
+                    _this.visible2 = true;
+                    _this.recp.push(_this.detailsList);
+                }
+                console.log(_this.detailsList);
+                console.log("Name is " + _this.stateDt);
+                console.log("batchlist null", _this.stateDt);
+            });
+        }, function (error) {
+            console.log(error);
+        });
     };
     LogComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

@@ -10,7 +10,7 @@
       <div class="col-md-12">
         <div class="input-group">
           <span class="input-group-prepend">
-            <button type="submit" class="btn btn-primary" (click)="logdat()"><i class="fa fa-search"></i> Search</button>
+            <button type="submit" class="btn btn-primary" (click)="getList()"><i class="fa fa-search"></i> Search</button>
           </span>
           <input #search type="text" id="policyid" name="policyid" class="form-control" placeholder="Policy ID" ngModel required>
         </div>
@@ -26,7 +26,7 @@
         <tr *ngFor="let data of recp;let i = index" >
     
             <td>
-                <span>{{data.name}}</span>
+                <span>{{data.addr}}</span>
             </td>
             <td>
                 <span>{{data.number}}</span>

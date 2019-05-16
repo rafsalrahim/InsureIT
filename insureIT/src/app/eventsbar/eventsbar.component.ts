@@ -30,11 +30,12 @@ export class EventsbarComponent implements OnInit {
     
     const nhs="NHS"
     setInterval(()=> { this.getList_rep() }, 60000);
-    this.getList();
+
    
   }
 
   ngOnInit() {
+    this.getList();
   }
 
   getList(){
@@ -288,8 +289,8 @@ export class EventsbarComponent implements OnInit {
                 const proc ="NHS"
                 const action ="pol_claimed"
                 const FAMILYNAME = 'insureIT'
-                ///const servDt = this.Form.sendData(Details[0],Details[1],this.amt,Details[3],Details[4],this.newstatus,proc,action,FAMILYNAME);
-                ///this.servicedata="htis is service dAatta"+servDt;
+                const servDt = this.Form.sendData(Details[0],Details[1],this.amt,Details[3],Details[4],this.newstatus,proc,action,FAMILYNAME);
+                this.servicedata="htis is service dAatta"+servDt;
                 //this.visible2=true;
                 this.recp.push(this.detailsList)
                 //this.Table2=this.detailsList;
